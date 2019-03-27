@@ -1,6 +1,9 @@
 from models.post import Post
+from database import Database
 
 __author__ = 'jcrh'
+
+Database.initialize()
 
 post = Post('Post 1', 'Post1 content', 'Post author')
 
@@ -8,7 +11,7 @@ print(post.content)
 
 
 
-## ***** Mongo connection *********** 
+## ***** Mongo connection ***********
 # from pymongo import MongoClient
 # client = MongoClient()
 
