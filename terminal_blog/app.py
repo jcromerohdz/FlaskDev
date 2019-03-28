@@ -1,23 +1,27 @@
 from models.post import Post
 from models.database import Database
 from models.blog import Blog
+from models.menu import Menu
 
 __author__ = 'jcrh'
 
 Database.initialize()
 
+menu = Menu()
+menu.run_menu()
 
-blog = Blog(author='Christian',
-            title='My title',
-            description='Sample description')
 
-blog.new_post()
-
-print(blog.id)
-
-from_database = Blog.get_from_mongo(blog.id)
-
-print(blog.get_posts())
+# blog = Blog(author='Christian',
+#             title='My title',
+#             description='Sample description')
+#
+# blog.new_post()
+#
+# print(blog.id)
+#
+# from_database = Blog.get_from_mongo(blog.id)
+#
+# print(blog.get_posts())
 
 
 
