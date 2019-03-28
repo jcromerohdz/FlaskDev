@@ -1,6 +1,8 @@
 import uuid
 import datetime
 from models.post import Post
+from models.database import Database
+
 
 class Blog(object):
     def __init__(self, author, title, description, id=None):
@@ -12,12 +14,10 @@ class Blog(object):
     def new_post(self):
         title = input("Enter post title: ")
         content = input("Enter post content: ")
-        date = input("Enter post date, or leave blank for today: ")
         post = Post(blog_id=self.id,
                     title=title,
                     content=content,
-                    author=self.author,
-                    date=datetime.datetime.strptime(date, "%d%m%y"))
+                    author=self.author)
 
         post.save_to_mongo()
 
@@ -26,7 +26,7 @@ class Blog(object):
 
     def save_to_mongo(self):
         Database.insert(collection='posts',
-                        database=self.json())
+                        data=self.json())
 
     def json(self):
         return {
@@ -38,9 +38,9 @@ class Blog(object):
 
     @classmethod
     def get_from_mongo(cls, id):
-        blog_data = Database.find_one(collection='posts',
-                                      query={'id': id})
-        return cls(author=blog_data['author'],
-                   title=blog_data['title'],
-                   description=blog_data['description'],
-                   id=blog_data['id'])
+        blog_data = Database.find_last(collection='posts')
+
+        return cls(author=blog_data[0]['author'],
+                   title=blog_data[0]['title'],
+                   description='some description',
+                   id=blog_data[0]['id'])

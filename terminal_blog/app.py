@@ -1,9 +1,24 @@
 from models.post import Post
 from models.database import Database
+from models.blog import Blog
 
 __author__ = 'jcrh'
 
 Database.initialize()
+
+
+blog = Blog(author='Christian',
+            title='My title',
+            description='Sample description')
+
+blog.new_post()
+
+print(blog.id)
+
+from_database = Blog.get_from_mongo(blog.id)
+
+print(blog.get_posts())
+
 
 
 # Insert to mongo
