@@ -22,9 +22,9 @@ Database.initialize()
 #
 # print(post)
 
-posts = Post.from_blog('12345')
-for post in posts:
-    print(post)
+# posts = Post.from_blog('12345')
+# for post in posts:
+#     print(post)
 
 
 
