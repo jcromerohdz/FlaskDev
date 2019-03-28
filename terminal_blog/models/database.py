@@ -6,7 +6,7 @@ class Database(object):
     @staticmethod
     def initialize():
         client = MongoClient()
-        Database.DATABASE = client.fullstack
+        Database.DATABASE = client.posts
 
     @staticmethod
     def insert(collection, data):

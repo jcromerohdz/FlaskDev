@@ -1,13 +1,30 @@
 from models.post import Post
-from database import Database
+from models.database import Database
 
 __author__ = 'jcrh'
 
 Database.initialize()
 
-post = Post('Post 1', 'Post1 content', 'Post author')
 
-print(post.content)
+# Insert to mongo
+# post = Post(blog_id='12345',
+#             title='Super post',
+#             content='This the content we send by the app',
+#             author='Christian')
+
+
+#post.save_to_mongo()
+
+
+
+# Read from mongo
+# post = Post.from_mongo('8111280e864f47229d189b312ad6d643')
+#
+# print(post)
+
+posts = Post.from_blog('12345')
+for post in posts:
+    print(post)
 
 
 
