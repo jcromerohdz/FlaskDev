@@ -25,7 +25,7 @@ class Blog(object):
         return Post.from_blog(self._id)
 
     def save_to_mongo(self):
-        Database.insert(collection='posts',
+        Database.insert(collection='blogs',
                         data=self.json())
 
     def json(self):
@@ -48,7 +48,6 @@ class Blog(object):
     @classmethod
     def from_mongo(cls, id):
         blog_data = Database.find_one(collection='posts', query={'_id': id})
-        print(blog_data['title'])
 
         return cls(author=blog_data['author'],
                    title=blog_data['title'],

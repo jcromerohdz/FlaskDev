@@ -6,7 +6,7 @@ class Database(object):
     @staticmethod
     def initialize():
         client = MongoClient()
-        Database.DATABASE = client.posts
+        Database.DATABASE = client.webBlog
 
     @staticmethod
     def insert(collection, data):
