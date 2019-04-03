@@ -1,8 +1,10 @@
 import uuid
 import datetime
 from flask import session
-from src.common.database import Database
-from src.models.blogs import Blog
+from common.database import Database
+from models.blog import Blog
+
+import sys
 
 
 class User(object):
@@ -12,23 +14,27 @@ class User(object):
         self._id = uuid.uuid4().hex if _id is None else _id
 
     @classmethod
-    def get_by_email(cls, self):
-        data = Database.find_one("users": {"email": self.email})
+    def get_by_email(cls, email):
+        data = Database.find_one("users", {"email": email})
         if data is not None:
-            return cls(**data)
+            print(data, file=sys.stdout)
+            return data
 
     @classmethod
-    def get_by_id(cls, self):
-        data = Database.find_one("users": {"_id": self._id})
+    def get_by_id(cls, _id):
+        data = Database.find_one(collection="users", query={"_id": _id})
         if data is not None:
             return cls(**data)
 
     @staticmethod
     def login_valid(email, password):
         user =  User.get_by_email(email)
+        print("############", file=sys.stdout)
+        print(user, file=sys.stdout)
+        print(user['password'], file=sys.stdout)
         if user is not None:
             #We can check the password
-            return user.password == password
+            return user['password'] == password
         return False
 
     @classmethod

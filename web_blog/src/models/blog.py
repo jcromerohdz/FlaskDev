@@ -1,7 +1,7 @@
 import uuid
 import datetime
-from src.models import Post
-from src.common.database import Database
+from models.post import Post
+from common.database import Database
 
 
 class Blog(object):
@@ -12,7 +12,7 @@ class Blog(object):
         self.description = description
         self._id = uuid.uuid4().hex if _id is None else _id
 
-    def new_post(self), title, content):
+    def new_post(self, title, content):
         # title = input("Enter post title: ")
         # content = input("Enter post content: ")
         post = Post(blog_id=self._id,

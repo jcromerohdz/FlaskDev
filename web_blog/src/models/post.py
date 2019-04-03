@@ -1,7 +1,7 @@
 
 import uuid
 import datetime
-from src.common.database import Database
+from common.database import Database
 
 now = datetime.datetime.utcnow()
 # print(now)
