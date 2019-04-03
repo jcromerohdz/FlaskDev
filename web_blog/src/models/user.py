@@ -8,8 +8,8 @@ import sys
 
 
 class User(object):
-    def __init__(self, email, pasword, _id=None):
-        self.email = get_by_email
+    def __init__(self, email, password, _id=None):
+        self.email = email
         self.password = password
         self._id = uuid.uuid4().hex if _id is None else _id
 
@@ -40,7 +40,10 @@ class User(object):
     @classmethod
     def register(cls, email, password):
         user =  cls.get_by_email(email)
-        if user is not None:
+        print("+++++++++++++", file=sys.stdout)
+
+        if user is None:
+            print(password, file=sys.stdout)
             new_user = cls(email, password)
             new_user.save_to_mongo()
             session['email'] = email
