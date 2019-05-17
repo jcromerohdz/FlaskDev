@@ -1,10 +1,10 @@
 FLASK_APP='manage.py'
 FLASK_ENV=development
-SECRET_KEY='my_master_key'
+SECRETE_KEY='you-will-never-guess'
+DB_USERNAME=flaskUser
+DB_PASSWORD=12345
 DB_HOST=localhost
-DB_USERNAME='flask_user'
-DB_PASSWORD='12345'
-DATABASE_NAME='flogger_db'
-POSTGRES_ROOT_PASSWORD=root
-BLOG_NAME='The Flogger Blog'
-BLOG_POST_IMAGES_PATH = '/FlaskDev/flogger/static/images/uploads'
+DATABASE_NAME=flogger
+POSTGRES_ROOT_PASSWORD=12345
+BLOG_NAME='The flogger Blog'
+BLOG_POST_IMAGES_PATH='C:\Users\crhdr\Documents\projects\FlaskDev\flogger\static\images\uploads'

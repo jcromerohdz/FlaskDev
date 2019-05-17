@@ -7,6 +7,7 @@ db = SQLAlchemy()
 
 def create_app(**config_overrides):
     app = Flask(__name__)
+    app.config['SECRET_KEY'] = 'any secret string'
 
     # Load config
     app.config.from_pyfile('settings.py')

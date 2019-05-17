@@ -1,1 +1,0 @@
-Set up ubuntu machine to get ready for flask dev
