@@ -1,6 +1,6 @@
 import sys
 
-from flask import Blueprint, render_template, redirect, session, url_for
+from flask import Blueprint, render_template, redirect, session, url_for, flash
 from werkzeug.security import generate_password_hash
 
 from application import db
@@ -22,7 +22,8 @@ def register():
         )
         db.session.add(author)
         db.session.commit()
-        return f'Author ID: {author.id}'
+        flash('You are now registered, please login')
+        return redirect(url_for('.login'))
     return render_template('author/register.html', form=form)
 
 @author_app.route('/login', methods=('GET', 'POST'))
@@ -37,3 +38,10 @@ def login():
         return redirect(url_for('blog_app.index'))
 
     return render_template('author/login.html', form=form, error=error)
+
+@author_app.route('/logout')
+def logout():
+    session.pop('id')
+    session.pop('full_name')
+    flash('User logged out')
+    return redirect(url_for('.login'))
