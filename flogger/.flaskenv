@@ -1,6 +1,6 @@
 FLASK_APP='manage.py'
 FLASK_ENV=development
-SECRETE_KEY='you-will-never-guess'
+SECRET_KEY='you-will-never-guess'
 DB_USERNAME=flaskUser
 DB_PASSWORD=12345
 DB_HOST=localhost

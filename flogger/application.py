@@ -1,13 +1,12 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-
-# Setup db
+from flaskext.markdown import Markdown
+# setup db
 db = SQLAlchemy()
 
 def create_app(**config_overrides):
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'any secret string'
 
     # Load config
     app.config.from_pyfile('settings.py')
@@ -19,12 +18,15 @@ def create_app(**config_overrides):
     db.init_app(app)
     migrate = Migrate(app, db)
 
+    # Markdown
+    Markdown(app)
+
     # import blueprints
-    from blog.views import blog_app
     from author.views import author_app
+    from blog.views import blog_app
 
     # register blueprints
-    app.register_blueprint(blog_app)
     app.register_blueprint(author_app)
+    app.register_blueprint(blog_app)
 
     return app
