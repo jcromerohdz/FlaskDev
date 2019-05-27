@@ -7,6 +7,7 @@ tag_x_post = db.Table('tag_x_post',
     db.Column('post_id', db.Integer, db.ForeignKey('post.id'), primary_key=True)
 )
 
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
